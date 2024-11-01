@@ -94,7 +94,7 @@ flutter:
   assets:
     - assets/
     - assets/backgrund/
-    - assets/ico/
+    - assets/icon/
     - assets/image_menu/
     - assets/sounds/
     - assets/splash/
