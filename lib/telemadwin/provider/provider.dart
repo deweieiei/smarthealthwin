@@ -24,6 +24,8 @@ class DataProvider with ChangeNotifier {
   String fbs = '';
   String si = '';
   String uric = '';
+
+  set id(String id) {}
   //funtion
   void update() {
     notifyListeners();
