@@ -10,7 +10,7 @@ import device_info_plus_macos
 import flutter_blue_plus
 import flutter_webrtc
 import just_audio
-import network_info_plus
+import network_info_plus_macos
 import openvidu_client
 import path_provider_foundation
 import shared_preferences_foundation

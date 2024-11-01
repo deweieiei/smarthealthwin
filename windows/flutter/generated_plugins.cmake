@@ -5,7 +5,7 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   flutter_pos_printer_platform
   flutter_webrtc
-  network_info_plus
+  network_info_plus_windows
   openvidu_client
   quick_usb
 )
