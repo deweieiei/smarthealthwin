@@ -1,5 +1,3 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/widgets.dart';
 
 class DataProvider with ChangeNotifier {
@@ -13,7 +11,8 @@ class DataProvider with ChangeNotifier {
   String careUnit = "";
   String careUnitId = "";
   //UserData
-  Map userinformation = {};String id = "";
+  Map userinformation = {};
+  String id = "";
   //HealthRecord
   String temp = "";
   String weight = "";
@@ -25,7 +24,20 @@ class DataProvider with ChangeNotifier {
   String fbs = "";
   String si = "";
   String uric = "";
- 
+  //view
+  String viewhome = "home";
+
+  void updateViewHome(String nameview) {
+    viewhome = nameview;
+    notifyListeners();
+  }
+
+  String viewhealthrecord = "";
+  void updateviewhealthrecord(String nameview) {
+    viewhealthrecord = nameview;
+    notifyListeners();
+  }
+
   //funtion
   void update() {
     notifyListeners();

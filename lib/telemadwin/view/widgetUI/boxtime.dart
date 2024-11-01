@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
 
 class BoxTime extends StatefulWidget {
   const BoxTime({super.key});
@@ -29,10 +29,10 @@ class _BoxTimeState extends State<BoxTime> {
     });
   }
 
-  void stop() {
-    setState(() {
-      timer?.cancel();
-    });
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -50,7 +50,7 @@ class _BoxTimeState extends State<BoxTime> {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
               SizedBox(
                   width: width * 0.35,

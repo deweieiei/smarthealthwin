@@ -1,5 +1,4 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter/material.dart';
 
 class Setting extends StatefulWidget {
   const Setting({super.key});
@@ -11,6 +10,6 @@ class Setting extends StatefulWidget {
 class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Text("Setting");
   }
 }
