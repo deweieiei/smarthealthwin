@@ -1,7 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_svg/flutter_svg.dart'; 
 import 'package:smarthealthwin/telemadwin/provider/provider.dart';
+import 'package:smarthealthwin/telemadwin/view/home.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,23 +16,28 @@ class _SplashScreenState extends State<SplashScreen> {
   DataProvider dataProvider = DataProvider();
   @override
   void initState() {
-    debugPrint("โหลดข้อมูลTelemed");
+  super.initState();   debugPrint("โหลดข้อมูลTelemed");
     dataProvider.platfromURL = '';
     dataProvider.idHospital = '';
     dataProvider.passwordSetting = '';
-    dataProvider.platfromURLopenvidu = '';
+    dataProvider.platfromURLOpenvidu = '';
     dataProvider.nameHospital = '';
     dataProvider.careUnit = '';
     dataProvider.careUnitId = '';
     debugPrint(dataProvider.platfromURL);
     debugPrint(dataProvider.idHospital);
     debugPrint(dataProvider.passwordSetting);
-    debugPrint(dataProvider.platfromURLopenvidu);
+    debugPrint(dataProvider.platfromURLOpenvidu);
     debugPrint(dataProvider.nameHospital);
     debugPrint(dataProvider.careUnit);
     debugPrint(dataProvider.careUnitId);
-    // TODO: implement initState
-    super.initState();
+ Future.delayed(const Duration(seconds: 1), () {
+    // ignore: use_build_context_synchronously
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const Home()));
+    
+ });
+
+ 
   }
 
   @override
@@ -61,11 +68,21 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
           )),
-          const Positioned(
-            right: 0,
-            child: CircularProgressIndicator(
-              color: Color.fromARGB(255, 0, 139, 130),
-            ),
+            Positioned(
+            
+            child:
+            SizedBox(  width: width  ,
+                height:height ,
+              child:  Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: const[ Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: CircularProgressIndicator(
+                  color: Color.fromARGB(255, 0, 139, 130),
+                                ),
+                ),],),
+            )
+             
           ),
         ],
       ),

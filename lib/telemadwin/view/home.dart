@@ -1,6 +1,14 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+import 'package:smarthealthwin/telemadwin/provider/provider.dart';
+import 'package:smarthealthwin/telemadwin/view/widgetUI/backGrund.dart';
+import 'package:smarthealthwin/telemadwin/view/widgetUI/boxID.dart';
 import 'package:smarthealthwin/telemadwin/view/widgetUI/boxtime.dart';
+import 'package:http/http.dart' as http;
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -10,7 +18,22 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  bool shownumpad = false;
+  bool shownumpad = false, status = false;
+
+  Future<void> getdatainformation() async {
+    Timer.periodic(const Duration(seconds: 2), (t) async {
+      var url =
+          Uri.parse('${context.read<DataProvider>().platfromURLLocal}/add_hr');
+      var response = await http.post(url, body: {});
+      var resTojson = json.decode(response.body);
+
+      if (resTojson.statusCode == 200) {
+        debugPrint(resTojson);
+        t.cancel();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -18,6 +41,7 @@ class _HomeState extends State<Home> {
 
     return Scaffold(
       body: Stack(children: [
+        const BackGrund(),
         Positioned(
             child: SafeArea(
           child: ListView(children: [
@@ -86,7 +110,6 @@ class _HomeState extends State<Home> {
                         shownumpad == true
                             ? Column(
                                 children: [
-                                  idcard,
                                   SizedBox(height: height * 0.01),
                                   status == false
                                       ? GestureDetector(

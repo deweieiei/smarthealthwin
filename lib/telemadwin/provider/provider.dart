@@ -7,25 +7,25 @@ class DataProvider with ChangeNotifier {
   String platfromURL = "";
   String idHospital = "";
   String passwordSetting = "";
-  String platfromURLopenvidu = "";
-  String nameHospital = '';
-  String careUnit = '';
-  String careUnitId = '';
+  String platfromURLOpenvidu = "";
+  String platfromURLLocal = "";
+  String nameHospital = "";
+  String careUnit = "";
+  String careUnitId = "";
   //UserData
-  Map userinformation = {};
+  Map userinformation = {};String id = "";
   //HealthRecord
-  String temp = '';
-  String weight = '';
-  String sys = '';
-  String dia = '';
-  String spo2 = '';
-  String pr = '';
-  String pul = '';
-  String fbs = '';
-  String si = '';
-  String uric = '';
-
-  set id(String id) {}
+  String temp = "";
+  String weight = "";
+  String sys = "";
+  String dia = "";
+  String spo2 = "";
+  String pr = "";
+  String pul = "";
+  String fbs = "";
+  String si = "";
+  String uric = "";
+ 
   //funtion
   void update() {
     notifyListeners();
