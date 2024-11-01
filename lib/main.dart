@@ -3,12 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:smarthealthwin/telemadwin/provider/provider.dart';
 import 'package:smarthealthwin/telemadwin/view/splashScreen.dart';
+import 'package:smarthealthwin/telemadwin/serialport/serialport.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
-    runApp(const Myapp());
+    runApp(ExampleApp());
   });
 }
 

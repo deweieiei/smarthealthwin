@@ -43,7 +43,7 @@ class _ExampleAppState extends State<ExampleApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Flutter Serial Port example'),
+          title: const Text('Flutter Serial Port Example'),
         ),
         body: Scrollbar(
           child: ListView(
