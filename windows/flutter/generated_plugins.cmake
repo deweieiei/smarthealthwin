@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  flutter_libserialport
   flutter_pos_printer_platform
   flutter_webrtc
   network_info_plus_windows
