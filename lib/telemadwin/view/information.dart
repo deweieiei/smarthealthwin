@@ -9,12 +9,31 @@ class Information extends StatefulWidget {
   State<Information> createState() => _InformationState();
 }
 
+// http://localhost:8189/api/smartcard/read
 class _InformationState extends State<Information> {
-  void sendData() {}
+  // static const String main_host =
+  //     "http://localhost:8189"; // Use 'static const' for constant variables
+  // static const Map<String, String> urlApi = {
+  //   "readcardonly": "/api/smartcard/read-card-only",
+  //   "saveasdraft": "/api/hhso-service/save-as-draft",
+  //   "confrimsave": "/api/nhso-service/confirm-save",
+  // };
+
+  void sendData() {
+    // debugPrint('url : ${url_api['readcardonly']}');
+    Map<dynamic, dynamic> dataUser =
+        context.read<DataProvider>().userinformation;
+    debugPrint(dataUser.toString());
+    debugPrint(dataUser['pid']);
+    List<dynamic> claimTypes = dataUser['claimTypes'];
+    debugPrint('$claimTypes');
+    //context.read<DataProvider>().userinformation;
+  }
 
   @override
   void initState() {
     super.initState();
+    sendData();
   }
 
   @override
