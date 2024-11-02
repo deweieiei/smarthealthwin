@@ -115,8 +115,9 @@ class _SumHealthrecordState extends State<SumHealthrecord> {
                 child: const Text("ย้อนกลับ")),
             ElevatedButton(
                 onPressed: () {
-                  dataProvider.updateviewhealthrecord("");
-                  dataProvider.updateViewHome("waiting_for_the_doctor");
+                  sendDataHealthrecord();
+                  // dataProvider.updateviewhealthrecord("");
+                  // dataProvider.updateViewHome("waiting_for_the_doctor");
                 },
                 child: const Text("ส่ง"))
           ])
