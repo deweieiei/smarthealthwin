@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smarthealthwin/telemadwin/provider/provider.dart';
+import 'package:smarthealthwin/telemadwin/serialport/serialport.dart';
 import 'package:smarthealthwin/telemadwin/view/healthrecord.dart';
 import 'package:smarthealthwin/telemadwin/view/information.dart';
 
@@ -39,7 +40,9 @@ class _HomeState extends State<Home> {
                                 : dataProvider.viewhome ==
                                         "waiting_for_the_doctor"
                                     ? const WaitingForTheDoctor()
-                                    : const ReadIDCard()),
+                                    : dataProvider.viewhome == "serialport"
+                                        ? ExampleApp()
+                                        : const ReadIDCard()),
       ]),
     );
   }

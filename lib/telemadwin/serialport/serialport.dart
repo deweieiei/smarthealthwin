@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_libserialport/flutter_libserialport.dart';
-
-void main() => runApp(ExampleApp());
+import 'package:provider/provider.dart';
+import 'package:smarthealthwin/telemadwin/provider/provider.dart';
 
 class ExampleApp extends StatefulWidget {
   @override
@@ -42,6 +42,15 @@ class _ExampleAppState extends State<ExampleApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        drawer: Drawer(
+            child: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              context.read<DataProvider>().updateViewHome("home");
+            },
+            child: const Text("home"),
+          ),
+        )),
         appBar: AppBar(
           title: const Text('Flutter Serial Port Example'),
         ),

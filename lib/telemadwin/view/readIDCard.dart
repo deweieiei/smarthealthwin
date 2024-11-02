@@ -108,6 +108,13 @@ class _ReadIDCardState extends State<ReadIDCard> {
                     context.read<DataProvider>().updateViewHome("information");
                   },
                   child: const Text("Test")),
+            ),
+            Center(
+              child: ElevatedButton(
+                  onPressed: () {
+                    context.read<DataProvider>().updateViewHome("serialport");
+                  },
+                  child: const Text("serialport")),
             )
           ]),
         ))
