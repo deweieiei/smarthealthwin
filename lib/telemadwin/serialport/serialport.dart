@@ -35,7 +35,13 @@ class _ExampleAppState extends State<ExampleApp> {
   }
 
   void initPorts() {
-    setState(() => availablePorts = SerialPort.availablePorts);
+    try {
+      setState(() => availablePorts = SerialPort.availablePorts);
+      debugPrint('Available ports: ${availablePorts.length}');
+    } catch (e) {
+      debugPrint('Error retrieving ports: $e');
+      setState(() => availablePorts = []); // Reset availablePorts on error
+    }
   }
 
   @override
