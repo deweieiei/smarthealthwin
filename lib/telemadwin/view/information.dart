@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smarthealthwin/telemadwin/provider/provider.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
 
 class Information extends StatefulWidget {
   const Information({super.key});
@@ -11,28 +13,42 @@ class Information extends StatefulWidget {
 
 // http://localhost:8189/api/smartcard/read
 class _InformationState extends State<Information> {
-  // static const String main_host =
-  //     "http://localhost:8189"; // Use 'static const' for constant variables
-  // static const Map<String, String> urlApi = {
-  //   "readcardonly": "/api/smartcard/read-card-only",
-  //   "saveasdraft": "/api/hhso-service/save-as-draft",
-  //   "confrimsave": "/api/nhso-service/confirm-save",
-  // };
+  String main_host =
+      "http://localhost:8189"; // Use 'static const' for constant variables
+  Map<String, String> url_Api = {
+    "readcard": "http://localhost:8189/api/smartcard/read",
+    "readcardonly": "http://localhost:8189/api/smartcard/read-card-only",
+    "saveasdraft": "http://localhost:8189/api/nhso-service/save-as-draft",
+    "confrimsave": "http://localhost:8189/api/nhso-service/confirm-save",
+  };
 
   void sendData() {
-    // debugPrint('url : ${url_api['readcardonly']}');
+    debugPrint('url-> : ${url_Api['readcard']}');
     Map<dynamic, dynamic> dataUser =
         context.read<DataProvider>().userinformation;
-    debugPrint(dataUser.toString());
+    //debugPrint(dataUser.toString());
     debugPrint(dataUser['pid']);
     List<dynamic> claimTypes = dataUser['claimTypes'];
     debugPrint('$claimTypes');
     //context.read<DataProvider>().userinformation;
+
+    Timer.periodic(const Duration(seconds: 10), (t) async {
+      var url =
+          Uri.parse('http://localhost:8189/api/smartcard/read/3440300015187');
+      //debugPrint(url);
+      try {
+        var response = await http.get(Uri.parse(url.toString()));
+        // debugPrint(response.statusCode);
+      } catch (e) {
+        debugPrint('->Exception: $e');
+      }
+    });
   }
 
   @override
   void initState() {
     super.initState();
+
     sendData();
   }
 
