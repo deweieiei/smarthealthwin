@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 import 'dart:convert';
 
@@ -20,17 +22,33 @@ class _ReadIDCardState extends State<ReadIDCard> {
   bool shownumpad = false, status = false;
 
   Future<void> getdatainformation() async {
-    Timer.periodic(const Duration(seconds: 2), (t) async {
-      var url =
-          Uri.parse('${context.read<DataProvider>().platfromURLLocal}/add_hr');
-      var response = await http.post(url, body: {});
-      var resTojson = json.decode(response.body);
-
-      if (resTojson.statusCode == 200) {
-        debugPrint(resTojson);
-        t.cancel();
+    context.read<DataProvider>().id = "";
+    Timer.periodic(const Duration(seconds: 5), (t) async {
+      var url = Uri.parse(context.read<DataProvider>().platfromURLLocal);
+      try {
+        var response = await http.get(url);
+        if (response.statusCode == 200) {
+          t.cancel();
+          var resToJson = json.decode(response.body);
+          debugPrint("พบบัตร หยุดอ่านบัตร");
+          debugPrint(resToJson.toString());
+          context.read<DataProvider>().updateuserinformation(resToJson);
+          Future.delayed(const Duration(seconds: 1), () {
+            context.read<DataProvider>().updateViewHome("information");
+          });
+        } else {
+          debugPrint('->Error: ${response.statusCode} ไม่พบบัตร');
+        }
+      } catch (e) {
+        debugPrint('->Exception: $e');
       }
     });
+  }
+
+  @override
+  void initState() {
+    getdatainformation();
+    super.initState();
   }
 
   @override
@@ -101,13 +119,6 @@ class _ReadIDCardState extends State<ReadIDCard> {
                   ),
                 ],
               )),
-            ),
-            Center(
-              child: ElevatedButton(
-                  onPressed: () {
-                    context.read<DataProvider>().updateViewHome("information");
-                  },
-                  child: const Text("Test")),
             ),
             Center(
               child: ElevatedButton(

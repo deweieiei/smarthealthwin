@@ -6,13 +6,19 @@ class DataProvider with ChangeNotifier {
   String idHospital = "";
   String passwordSetting = "";
   String platfromURLOpenvidu = "";
-  String platfromURLLocal = "";
+  String platfromURLLocal = "http://localhost:8189/api/smartcard/read";
   String nameHospital = "";
   String careUnit = "";
   String careUnitId = "";
   //UserData
   Map userinformation = {};
   String id = "";
+  void updateuserinformation(Map data) {
+    userinformation = data;
+    id = data["pid"];
+    notifyListeners();
+  }
+
   //HealthRecord
   String temp = "";
   String weight = "";
