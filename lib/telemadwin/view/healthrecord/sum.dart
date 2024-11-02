@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smarthealthwin/telemadwin/provider/provider.dart';
 import 'package:smarthealthwin/telemadwin/view/widgetUI/boxRecord.dart';
+import 'package:http/http.dart' as http;
 
 class SumHealthrecord extends StatefulWidget {
   const SumHealthrecord({super.key});
@@ -17,18 +20,38 @@ class _SumHealthrecordState extends State<SumHealthrecord> {
   TextEditingController heightHealthrecord = TextEditingController();
   TextEditingController weightHealthrecord = TextEditingController();
   TextEditingController spo2Healthrecord = TextEditingController();
-  
+
+  void sendDataHealthrecord() async {
+    var url = Uri.parse('${context.read<DataProvider>().platfromURL}/add_hr');
+    var res = await http.post(url, body: {
+      "public_id": "1710501456572",
+      "care_unit_id": "63edead4790f9b775b00004f",
+      "temp": " ",
+      "weight": "",
+      "bp_sys": "",
+      "bp_dia": "",
+      "pulse_rate": "",
+      "spo2": "",
+      "fbs": "",
+      "height": "",
+      "bmi": "",
+      "bp": "",
+      "rr": "",
+      "cc": "",
+      "recep_public_id": "",
+    });
+    var resTojson = json.decode(res.body);
+    if (res.statusCode == 200) {}
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-
-
     weightHealthrecord.text = context.read<DataProvider>().weight.toString();
-
   }
-  
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
