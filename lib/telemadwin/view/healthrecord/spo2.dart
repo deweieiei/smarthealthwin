@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:provider/provider.dart';
 import 'package:smarthealthwin/telemadwin/provider/provider.dart';
 import 'package:smarthealthwin/telemadwin/view/widgetUI/boxRecord.dart';
@@ -12,6 +13,23 @@ class Spo2Healthrecord extends StatefulWidget {
 
 class _Spo2HealthrecordState extends State<Spo2Healthrecord> {
   TextEditingController spo2Healthrecord = TextEditingController();
+  List availablePorts = [];
+  void initPorts() {
+    try {
+      setState(() => availablePorts = SerialPort.availablePorts);
+      debugPrint('Available ports: ${availablePorts.length}');
+    } catch (e) {
+      debugPrint('Error retrieving ports: $e');
+      setState(() => availablePorts = []);
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;

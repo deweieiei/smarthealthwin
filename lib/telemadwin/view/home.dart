@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
                         : dataProvider.viewhome == "setting"
                             ? const Setting()
                             : dataProvider.viewhome == "videocall"
-                                ? const Videocall()
+                                ? const PrePareVideo()
                                 : dataProvider.viewhome ==
                                         "waiting_for_the_doctor"
                                     ? const WaitingForTheDoctor()
