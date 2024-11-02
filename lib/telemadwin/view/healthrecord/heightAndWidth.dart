@@ -48,6 +48,9 @@ class _HeightAndWidthState extends State<HeightAndWidth> {
             ElevatedButton(
                 onPressed: () {
                   dataProvider.updateviewhealthrecord("pulseAndSysAndDia");
+
+                  context.read<DataProvider>().weight = weightHealthrecord.text;
+                 
                   debugPrint(
                       context.read<DataProvider>().viewhealthrecord.toString());
                 },

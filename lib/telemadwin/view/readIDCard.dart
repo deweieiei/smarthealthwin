@@ -120,13 +120,25 @@ class _ReadIDCardState extends State<ReadIDCard> {
                 ],
               )),
             ),
-            Center(
+            Row(
+              mainAxisAlignment:MainAxisAlignment.center,
+              children:[
+              Center(
               child: ElevatedButton(
                   onPressed: () {
                     context.read<DataProvider>().updateViewHome("serialport");
                   },
                   child: const Text("serialport")),
+            ),Center(
+              child: ElevatedButton(
+                  onPressed: () {
+                    context.read<DataProvider>().updateViewHome("information");
+                  },
+                  child: const Text("information")),
             )
+              ]
+            )
+           
           ]),
         ))
       ]),

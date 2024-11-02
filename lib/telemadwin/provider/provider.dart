@@ -21,6 +21,7 @@ class DataProvider with ChangeNotifier {
 
   //HealthRecord
   String temp = "";
+  String height = "";
   String weight = "";
   String sys = "";
   String dia = "";

@@ -17,6 +17,18 @@ class _SumHealthrecordState extends State<SumHealthrecord> {
   TextEditingController heightHealthrecord = TextEditingController();
   TextEditingController weightHealthrecord = TextEditingController();
   TextEditingController spo2Healthrecord = TextEditingController();
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+
+
+    weightHealthrecord.text = context.read<DataProvider>().weight.toString();
+
+  }
+  
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
