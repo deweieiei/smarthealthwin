@@ -26,21 +26,17 @@ extension IntToString on int {
 }
 
 class _ExampleAppState extends State<ExampleApp> {
-  var availablePorts = [];
+  List availablePorts = [];
 
-  @override
-  void initState() {
-    super.initState();
-    initPorts();
-  }
-
-  void initPorts() {
+  void initPorts() async {
     try {
       setState(() => availablePorts = SerialPort.availablePorts);
-      debugPrint('Available ports: ${availablePorts.length}');
+      debugPrint('Available ports: $availablePorts');
+      SerialPort serialPort = SerialPort(availablePorts[0]);
+      serialPort.isOpen;
     } catch (e) {
       debugPrint('Error retrieving ports: $e');
-      setState(() => availablePorts = []); // Reset availablePorts on error
+      setState(() => availablePorts = []);
     }
   }
 

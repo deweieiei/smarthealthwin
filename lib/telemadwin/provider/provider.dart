@@ -7,6 +7,7 @@ class DataProvider with ChangeNotifier {
   String passwordSetting = "";
   String platfromURLOpenvidu = "";
   String platfromURLLocal = "http://localhost:8189/api/smartcard/read";
+
   String nameHospital = "";
   String careUnit = "";
   String careUnitId = "";

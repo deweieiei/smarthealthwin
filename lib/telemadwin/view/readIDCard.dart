@@ -23,10 +23,14 @@ class _ReadIDCardState extends State<ReadIDCard> {
 
   Future<void> getdatainformation() async {
     context.read<DataProvider>().id = "";
+
     Timer.periodic(const Duration(seconds: 5), (t) async {
       var url = Uri.parse(context.read<DataProvider>().platfromURLLocal);
+
       try {
         var response = await http.get(url);
+
+        print(response.statusCode);
         if (response.statusCode == 200) {
           t.cancel();
           var resToJson = json.decode(response.body);
@@ -50,6 +54,12 @@ class _ReadIDCardState extends State<ReadIDCard> {
     getdatainformation();
     super.initState();
   }
+
+  //@override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   //super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
